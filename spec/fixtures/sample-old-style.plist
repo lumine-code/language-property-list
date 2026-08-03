@@ -1,0 +1,45 @@
+// !$*UTF8*$!
+// A property list in the old-style (NeXT/OpenStep) format, which Xcode still
+// uses for project files. The `// property list` first line is what selects
+// this grammar over the XML one.
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+
+	objects = {
+
+		/* Begin PBXBuildFile section */
+		1A2B3C4D0000000000000001 /* main.m in Sources */ = {
+			isa = PBXBuildFile;
+			fileRef = 1A2B3C4D0000000000000002 /* main.m */;
+		};
+		/* End PBXBuildFile section */
+
+		1A2B3C4D0000000000000003 = {
+			isa = PBXNativeTarget;
+			name = sample;
+			productName = "Sample App";
+			buildConfigurationList = 1A2B3C4D0000000000000004;
+			buildPhases = (
+				1A2B3C4D0000000000000005,
+				1A2B3C4D0000000000000006,
+			);
+			dependencies = (
+			);
+		};
+
+		1A2B3C4D0000000000000004 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_LDFLAGS = "-lm";
+				SDKROOT = macosx;
+				'SINGLE_QUOTED' = 'also legal';
+			};
+		};
+	};
+
+	rootObject = 1A2B3C4D0000000000000003;
+}
