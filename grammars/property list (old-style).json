@@ -223,7 +223,8 @@
           "name": "punctuation.separator.dictionary.plist"
         }
       },
-      "name": "meta.scope.dictionary-item.${3/[[\\s\\x20-\\x7F]&&[:^alnum:]]//g}${7/[[\\s\\x20-\\x7F]&&[:^alnum:]]//g}${9/[[\\s\\x20-\\x7F]&&[:^alnum:]]//g}.plist",
+      "comment": "TextMate named this scope after the key, via a ${n/…/…/g} capture transform. No Atom-lineage tokenizer implements those, so the transform used to leak into the scope name verbatim; the key is already scoped constant.other.key.plist.",
+      "name": "meta.scope.dictionary-item.plist",
       "patterns": [
         {
           "include": "#dictionary_item_contents"
