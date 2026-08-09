@@ -7,12 +7,12 @@ const path = require("path");
 
 describe("Property List sample fixtures", () => {
   beforeEach(async () => {
-    await atom.packages.activatePackage("language-xml");
-    await atom.packages.activatePackage("language-property-list");
+    await lumine.packages.activatePackage("language-xml");
+    await lumine.packages.activatePackage("language-property-list");
   });
 
   it("tokenizes sample.plist", async () => {
-    const editor = await atom.workspace.open(path.join(__dirname, "fixtures", "sample.plist"));
+    const editor = await lumine.workspace.open(path.join(__dirname, "fixtures", "sample.plist"));
 
     expect(editor.getGrammar().scopeName).toBe("text.xml.plist");
 

@@ -6,13 +6,13 @@ describe("Property List grammars", function () {
     // The XML grammar delegates the prolog, the doctype, and generic markup to
     // `text.xml`, so language-xml has to be loaded for it to tokenize a real
     // file at all.
-    waitsForPromise(() => atom.packages.activatePackage("language-xml"));
-    waitsForPromise(() => atom.packages.activatePackage("language-property-list"));
+    waitsForPromise(() => lumine.packages.activatePackage("language-xml"));
+    waitsForPromise(() => lumine.packages.activatePackage("language-property-list"));
 
     runs(function () {
-      atom.config.set("language.useTreeSitterParsers", false);
-      oldStyle = atom.grammars.grammarForScopeName("source.plist");
-      xml = atom.grammars.grammarForScopeName("text.xml.plist");
+      lumine.config.set("language.useTreeSitterParsers", false);
+      oldStyle = lumine.grammars.grammarForScopeName("source.plist");
+      xml = lumine.grammars.grammarForScopeName("text.xml.plist");
     });
   });
 
