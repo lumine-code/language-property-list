@@ -9,7 +9,7 @@ describe("Property List grammars", function () {
     await lumine.packages.activatePackage("language-xml");
     await lumine.packages.activatePackage("language-property-list");
 
-    lumine.config.set("language.useTreeSitterParsers", false);
+    lumine.config.set("editor.useTreeSitterParsers", false);
     oldStyle = lumine.grammars.grammarForScopeName("source.plist");
     xml = lumine.grammars.grammarForScopeName("text.xml.plist");
   });

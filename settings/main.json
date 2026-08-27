@@ -1,6 +1,6 @@
 {
   ".source.plist": {
-    "language": {
+    "editor": {
       "commentStart": "// ",
       "commentDelimiters": {
         "line": "//"
