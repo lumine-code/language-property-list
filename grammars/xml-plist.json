@@ -1,0 +1,20 @@
+{
+  "name": "Property List (XML)",
+  "scopeName": "text.xml.plist",
+  "type": "tree-sitter",
+  "parser": "tree-sitter-xml",
+  "firstLineRegex": ["^\\s*<\\?xml[^>]*>\\s*<!DOCTYPE\\s+plist\\b"],
+  "contentRegex": "^\\s*(?:<\\?xml[^>]*>\\s*)?(?:<!DOCTYPE\\s+plist[^>]*>\\s*)?<plist\\b",
+  "fileTypes": ["plist", "dict", "scriptSuite", "scriptTerminology", "savedSearch", "wflow"],
+  "comments": {
+    "start": "<!-- "
+  },
+  "treeSitter": {
+    "parserSource": "github:tree-sitter-grammars/tree-sitter-xml/xml#v0.7.0",
+    "wasmBuildTool": "tree-sitter-cli#v0.26.13",
+    "grammar": "xml.wasm",
+    "highlightsQuery": "xml-plist-highlights.scm",
+    "foldsQuery": "xml-plist-folds.scm",
+    "languageSegment": "xml"
+  }
+}

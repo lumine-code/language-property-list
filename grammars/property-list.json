@@ -1,0 +1,18 @@
+{
+  "name": "Property List (OpenStep)",
+  "scopeName": "source.plist",
+  "type": "tree-sitter",
+  "parser": "tree-sitter-property-list",
+  "firstLineRegex": ["^\\s*//.*(?:Property List|property list)\\b"],
+  "contentRegex": "^\\s*(?://[^\\r\\n]*(?:\\r?\\n|$)\\s*|/\\*[\\s\\S]*?\\*/\\s*)*[({]",
+  "fileTypes": ["plist", "dict", "scriptSuite", "scriptTerminology", "savedSearch"],
+  "comments": {
+    "start": "// "
+  },
+  "treeSitter": {
+    "parserSource": "github:Formkunft/tree-sitter-property-list#31ff8b0a6dda1b88c8f24b0bc376a0ae573607b2",
+    "wasmBuildTool": "tree-sitter-cli#v0.26.13",
+    "grammar": "property-list.wasm",
+    "highlightsQuery": "property-list-highlights.scm"
+  }
+}

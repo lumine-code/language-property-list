@@ -1,198 +1,47 @@
-describe("Property List grammars", function () {
-  let oldStyle = null;
-  let xml = null;
+const fs = require("fs");
+const path = require("path");
 
+describe("Property List Tree-sitter grammars", () => {
   beforeEach(async () => {
-    // The XML grammar delegates the prolog, the doctype, and generic markup to
-    // `text.xml`, so language-xml has to be loaded for it to tokenize a real
-    // file at all.
-    await lumine.packages.activatePackage("language-xml");
     await lumine.packages.activatePackage("language-property-list");
-
-    lumine.config.set("editor.useTreeSitterParsers", false);
-    oldStyle = lumine.grammars.grammarForScopeName("source.plist");
-    xml = lumine.grammars.grammarForScopeName("text.xml.plist");
   });
 
-  describe("the old-style grammar", function () {
-    it("parses the grammar", function () {
-      expect(oldStyle).toBeTruthy();
-      expect(oldStyle.scopeName).toBe("source.plist");
-    });
+  async function openFixture(name) {
+    const editor = await lumine.workspace.open(path.join(__dirname, "fixtures", name));
+    await editor.languageMode.ready;
+    return editor;
+  }
 
-    it("tokenizes the encoding comment", function () {
-      let { tokens } = oldStyle.tokenizeLine("// !$*UTF8*$!");
-      expect(tokens[0]).toEqual({
-        value: "//",
-        scopes: [
-          "source.plist",
-          "comment.line.double-slash.plist",
-          "punctuation.definition.comment.plist",
-        ],
-      });
-      expect(tokens[1]).toEqual({
-        value: " !$*UTF8*$!",
-        scopes: ["source.plist", "comment.line.double-slash.plist"],
-      });
-    });
+  it("selects and parses OpenStep property lists", async () => {
+    const editor = await openFixture("sample-old-style.plist");
+    const languageMode = editor.getBuffer().getLanguageMode();
 
-    it("tokenizes a dictionary and its keys", function () {
-      let lines = oldStyle.tokenizeLines(["{", '  key = "value";', "}"].join("\n"));
+    expect(editor.getGrammar().scopeName).toBe("source.plist");
+    expect(languageMode.tree.rootNode.hasError).toBe(false);
 
-      expect(lines[0][0]).toEqual({
-        value: "{",
-        scopes: [
-          "source.plist",
-          "meta.scope.dictionary.plist",
-          "punctuation.definition.dictionary.begin.plist",
-        ],
-      });
-
-      // TextMate named this scope after the key itself, through a capture
-      // transform no Atom-lineage tokenizer implements. It is static here, and
-      // must stay free of `${…}`.
-      expect(lines[1][1]).toEqual({
-        value: "key",
-        scopes: [
-          "source.plist",
-          "meta.scope.dictionary.plist",
-          "meta.scope.dictionary-item.plist",
-          "constant.other.key.plist",
-        ],
-      });
-      for (let token of lines[1]) {
-        for (let scope of token.scopes) {
-          expect(scope).not.toContain("${");
-        }
-      }
-
-      let value = lines[1].find((token) => token.value === "value");
-      expect(value.scopes).toContain("string.quoted.double.plist");
-
-      let semicolon = lines[1][lines[1].length - 1];
-      expect(semicolon).toEqual({
-        value: ";",
-        scopes: [
-          "source.plist",
-          "meta.scope.dictionary.plist",
-          "meta.scope.dictionary-item.plist",
-          "punctuation.separator.dictionary.plist",
-        ],
-      });
-
-      expect(lines[2][0]).toEqual({
-        value: "}",
-        scopes: [
-          "source.plist",
-          "meta.scope.dictionary.plist",
-          "punctuation.definition.dictionary.end.plist",
-        ],
-      });
-    });
-
-    it("tokenizes an array", function () {
-      let lines = oldStyle.tokenizeLines(["(", "  a,", "  b", ")"].join("\n"));
-
-      expect(lines[0][0]).toEqual({
-        value: "(",
-        scopes: [
-          "source.plist",
-          "meta.scope.array.plist",
-          "punctuation.definition.array.begin.plist",
-        ],
-      });
-      expect(lines[1][1].value).toBe("a");
-      expect(lines[1][1].scopes).toContain("string.unquoted.plist");
-      expect(lines[1][2]).toEqual({
-        value: ",",
-        scopes: [
-          "source.plist",
-          "meta.scope.array.plist",
-          "meta.scope.array-item.plist",
-          "punctuation.separator.array.plist",
-        ],
-      });
-      expect(lines[3][0]).toEqual({
-        value: ")",
-        scopes: [
-          "source.plist",
-          "meta.scope.array.plist",
-          "punctuation.definition.array.end.plist",
-        ],
-      });
-    });
+    const text = fs.readFileSync(
+      path.join(__dirname, "fixtures", "sample-old-style.plist"),
+      "utf8",
+    );
+    const keyIndex = text.indexOf("archiveVersion");
+    const keyPoint = editor.getBuffer().positionForCharacterIndex(keyIndex);
+    expect(editor.scopeDescriptorForBufferPosition(keyPoint).getScopesArray()).toContain(
+      "constant.other.key.plist",
+    );
   });
 
-  describe("the XML grammar", function () {
-    it("parses the grammar", function () {
-      expect(xml).toBeTruthy();
-      expect(xml.scopeName).toBe("text.xml.plist");
-    });
+  it("selects and parses XML property lists", async () => {
+    const editor = await openFixture("sample.plist");
+    const languageMode = editor.getBuffer().getLanguageMode();
 
-    it("tokenizes the prolog and the doctype through text.xml", function () {
-      let lines = xml.tokenizeLines(
-        [
-          '<?xml version="1.0" encoding="UTF-8"?>',
-          '<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN">',
-        ].join("\n"),
-      );
+    expect(editor.getGrammar().scopeName).toBe("text.xml.plist");
+    expect(languageMode.tree.rootNode.hasError).toBe(false);
 
-      expect(lines[0][0].scopes).toContain("meta.tag.preprocessor.xml");
-      expect(lines[0][1]).toEqual({
-        value: "xml",
-        scopes: ["text.xml.plist", "meta.tag.preprocessor.xml", "entity.name.tag.xml"],
-      });
-      expect(lines[1][1]).toEqual({
-        value: "DOCTYPE",
-        scopes: ["text.xml.plist", "meta.tag.sgml.doctype.xml", "keyword.other.doctype.xml"],
-      });
-    });
-
-    it("tokenizes the plist element and its version attribute", function () {
-      let { tokens } = xml.tokenizeLine('<plist version="1.0">');
-
-      expect(tokens[1]).toEqual({
-        value: "plist",
-        scopes: [
-          "text.xml.plist",
-          "meta.tag.plist.xml.plist",
-          "entity.name.tag.xml.plist",
-          "entity.name.tag.localname.xml.plist",
-        ],
-      });
-      expect(tokens[3]).toEqual({
-        value: "version",
-        scopes: [
-          "text.xml.plist",
-          "meta.tag.plist.xml.plist",
-          "entity.other.attribute-name.version.xml.plist",
-        ],
-      });
-    });
-
-    it("scopes key, string, integer and boolean values by their element", function () {
-      let lines = xml.tokenizeLines(
-        [
-          '<plist version="1.0">',
-          "<dict>",
-          "  <key>Label</key>",
-          "  <string>com.example</string>",
-          "  <integer>7</integer>",
-          "  <true/>",
-          "</dict>",
-          "</plist>",
-        ].join("\n"),
-      );
-
-      let scopesFor = (row, value) => lines[row].find((token) => token.value === value).scopes;
-
-      expect(scopesFor(2, "Label")).toEqual(["text.xml.plist", "constant.other.name.xml.plist"]);
-      expect(scopesFor(3, "com.example")).toEqual([
-        "text.xml.plist",
-        "string.quoted.other.xml.plist",
-      ]);
-      expect(scopesFor(4, "7")).toEqual(["text.xml.plist", "constant.numeric.integer.xml.plist"]);
-      expect(scopesFor(5, "true")).toContain("meta.tag.boolean.xml.plist");
-    });
+    const text = fs.readFileSync(path.join(__dirname, "fixtures", "sample.plist"), "utf8");
+    const tagIndex = text.indexOf("<plist") + 1;
+    const tagPoint = editor.getBuffer().positionForCharacterIndex(tagIndex);
+    expect(editor.scopeDescriptorForBufferPosition(tagPoint).getScopesArray()).toContain(
+      "entity.name.tag.xml",
+    );
   });
 });

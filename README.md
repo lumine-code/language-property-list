@@ -4,7 +4,7 @@ Property list language support.
 
 ## Features
 
-- **Grammars**: provides TextMate grammars derived from [atom/language-property-list](https://github.com/atom/language-property-list).
+- **Grammars**: provides Tree-sitter grammars built from [tree-sitter-property-list](https://github.com/Formkunft/tree-sitter-property-list) and [tree-sitter-xml](https://github.com/tree-sitter-grammars/tree-sitter-xml).
 - **Syntax highlighting**: full grammar coverage for old-style and XML plist files.
 - **Snippets**: shortcuts for common property list structures.
 
