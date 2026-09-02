@@ -11,7 +11,7 @@
   },
   "treeSitter": {
     "parserSource": "github:tree-sitter-grammars/tree-sitter-xml/xml#v0.7.0",
-    "wasmBuildTool": "tree-sitter-cli#v0.26.13",
+    "wasmBuildTool": "tree-sitter-cli#v0.27.0",
     "grammar": "xml.wasm",
     "highlightsQuery": "xml-plist-highlights.scm",
     "foldsQuery": "xml-plist-folds.scm",
