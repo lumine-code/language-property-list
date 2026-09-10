@@ -16,20 +16,14 @@
 
 (PI) @keyword.control.directive.xml
 
-(doctypedecl
-  "DOCTYPE" @keyword.control.directive.define.xml)
+(("DOCTYPE" @keyword.control.directive.define.xml)
+  (#is? test.childOfType doctypedecl))
 
-(doctypedecl
-  (Name) @entity.name.type.xml)
+((Name) @entity.name.type.xml
+  (#is? test.childOfType doctypedecl))
 
-(STag
-  (Name) @entity.name.tag.xml)
-
-(ETag
-  (Name) @entity.name.tag.xml)
-
-(EmptyElemTag
-  (Name) @entity.name.tag.xml)
+((Name) @entity.name.tag.xml
+  (#is? test.childOfType "STag ETag EmptyElemTag"))
 
 (Attribute
   (Name) @entity.other.attribute-name.xml)
