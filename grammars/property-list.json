@@ -3,6 +3,8 @@
   "scopeName": "source.plist",
   "type": "tree-sitter",
   "parser": "tree-sitter-property-list",
+  // Root-only: the conventional `plist` injection name belongs to the XML
+  // form; file contents distinguish this OpenStep form during root selection.
   "firstLineRegex": ["^\\s*//.*(?:Property List|property list)\\b"],
   "contentRegex": "^\\s*(?://[^\\r\\n]*(?:\\r?\\n|$)\\s*|/\\*[\\s\\S]*?\\*/\\s*)*[({]",
   "fileTypes": ["plist", "dict", "scriptSuite", "scriptTerminology", "savedSearch"],

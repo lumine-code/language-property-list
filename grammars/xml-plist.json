@@ -3,6 +3,7 @@
   "scopeName": "text.xml.plist",
   "type": "tree-sitter",
   "parser": "tree-sitter-xml",
+  "injectionNames": ["plist", "xml-plist"],
   "firstLineRegex": ["^\\s*<\\?xml[^>]*>\\s*<!DOCTYPE\\s+plist\\b"],
   "contentRegex": "^\\s*(?:<\\?xml[^>]*>\\s*)?(?:<!DOCTYPE\\s+plist[^>]*>\\s*)?<plist\\b",
   "fileTypes": ["plist", "dict", "scriptSuite", "scriptTerminology", "savedSearch", "wflow"],

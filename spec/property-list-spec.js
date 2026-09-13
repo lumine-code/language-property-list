@@ -46,6 +46,8 @@ describe("Property List Tree-sitter grammars", () => {
     expect(editor.scopeDescriptorForBufferPosition(tagPoint).getScopesArray()).toContain(
       "entity.name.tag.xml",
     );
+    expect(editor.getGrammar().injectionNames).toEqual(["plist", "xml-plist"]);
+    expect(lumine.grammars.treeSitterGrammarForLanguageString("plist")).toBe(editor.getGrammar());
   });
 
   it("keeps a six-row tile local inside a 6000-attribute XML tag", async () => {
