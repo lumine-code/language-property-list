@@ -19,7 +19,9 @@ describe("Property List Tree-sitter grammars", () => {
     const editor = await openFixture("sample-old-style.plist");
 
     expect(editor.getGrammar().scopeName).toBe("source.plist");
-    expect((await editor.getSyntaxDiagnostics()).hasError).toBe(false);
+    expect(editor.getSyntaxNodeAtBufferPosition([0, 0], (node) => !node.parent).hasError).toBe(
+      false,
+    );
 
     const text = fs.readFileSync(
       path.join(__dirname, "fixtures", "sample-old-style.plist"),
@@ -36,7 +38,9 @@ describe("Property List Tree-sitter grammars", () => {
     const editor = await openFixture("sample.plist");
 
     expect(editor.getGrammar().scopeName).toBe("text.xml.plist");
-    expect((await editor.getSyntaxDiagnostics()).hasError).toBe(false);
+    expect(editor.getSyntaxNodeAtBufferPosition([0, 0], (node) => !node.parent).hasError).toBe(
+      false,
+    );
 
     const text = fs.readFileSync(path.join(__dirname, "fixtures", "sample.plist"), "utf8");
     const tagIndex = text.indexOf("<plist") + 1;
@@ -59,13 +63,16 @@ describe("Property List Tree-sitter grammars", () => {
     editor.setText(lines.join("\r\n"));
     const languageMode = editor.getBuffer().languageMode;
     await languageMode.ready;
-    expect((await editor.getSyntaxDiagnostics()).hasError).toBe(false);
+    expect(editor.getSyntaxNodeAtBufferPosition([0, 0], (node) => !node.parent).hasError).toBe(
+      false,
+    );
 
-    const groups = await editor.getGrammarQueryCaptureGroups("highlightsQuery", {
+    const capturesQuery = await editor.getGrammar().getQuery("highlightsQuery");
+    const queryRoot = editor.getSyntaxNodeAtBufferPosition([0, 0], (node) => !node.parent);
+    const captures = capturesQuery.captures(queryRoot, {
       startPosition: new Point(3000, 0),
       endPosition: new Point(3006, 0),
     });
-    const captures = groups.find(({ grammar }) => grammar === editor.getGrammar()).captures;
 
     expect(captures.length).toBeGreaterThan(0);
     expect(captures.length).toBeLessThanOrEqual(45);
