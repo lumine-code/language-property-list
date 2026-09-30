@@ -6,7 +6,9 @@
   // Root-only: the conventional `plist` injection name belongs to the XML
   // form; file contents distinguish this OpenStep form during root selection.
   "firstLineRegex": ["^\\s*//.*(?:Property List|property list)\\b"],
-  "contentRegex": "^\\s*(?://[^\\r\\n]*(?:\\r?\\n|$)\\s*|/\\*[\\s\\S]*?\\*/\\s*)*[({]",
+  // A block comment ends at its first closing delimiter; it cannot absorb
+  // subsequent comments into another backtracking partition.
+  "contentRegex": "^\\s*(?://[^\\r\\n]*(?:\\r?\\n|$)\\s*|/\\*(?:[^*]|\\*(?!/))*\\*/\\s*)*[({]",
   "fileTypes": ["plist", "dict", "scriptSuite", "scriptTerminology", "savedSearch"],
   "comments": {
     "start": "// "
