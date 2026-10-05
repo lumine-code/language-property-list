@@ -1,0 +1,40 @@
+{
+  "source.plist": {
+    "text": "{ Name = \"Example\"; Nested = { Enabled = YES; }; }",
+    "symbols": [
+      {
+        "name": "Name",
+        "tag": "property"
+      },
+      {
+        "name": "Nested",
+        "tag": "property"
+      },
+      {
+        "name": "Enabled",
+        "tag": "property"
+      }
+    ],
+    "absent": ["Example", "YES"],
+    "only": true
+  },
+  "text.xml.plist": {
+    "text": "<plist><dict><key>Name</key><string>Example</string><key>Nested</key><dict><key>Enabled</key><true/></dict></dict></plist>",
+    "symbols": [
+      {
+        "name": "Name",
+        "tag": "property"
+      },
+      {
+        "name": "Nested",
+        "tag": "property"
+      },
+      {
+        "name": "Enabled",
+        "tag": "property"
+      }
+    ],
+    "absent": ["Example", "plist", "dict", "true"],
+    "only": true
+  }
+}

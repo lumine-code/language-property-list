@@ -16,6 +16,7 @@
     "grammar": "xml.wasm",
     "highlightsQuery": "xml-plist-highlights.scm",
     "foldsQuery": "xml-plist-folds.scm",
-    "languageSegment": "xml"
+    "languageSegment": "xml",
+    "tagsQuery": "xml-plist-tags.scm"
   }
 }
