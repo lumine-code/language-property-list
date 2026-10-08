@@ -2,6 +2,8 @@
 
 Property list language support.
 
+Fork of [pulsar-edit/pulsar](https://github.com/pulsar-edit/pulsar) (`packages/language-property-list`).
+
 ## Features
 
 - **Grammars**: provides Tree-sitter grammars built from [tree-sitter-property-list](https://github.com/Formkunft/tree-sitter-property-list) and [tree-sitter-xml](https://github.com/tree-sitter-grammars/tree-sitter-xml).
