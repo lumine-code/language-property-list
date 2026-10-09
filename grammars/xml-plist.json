@@ -8,7 +8,8 @@
   "contentRegex": "^\\s*(?:<\\?xml[^>]*>\\s*)?(?:<!DOCTYPE\\s+plist[^>]*>\\s*)?<plist\\b",
   "fileTypes": ["plist", "dict", "scriptSuite", "scriptTerminology", "savedSearch", "wflow"],
   "comments": {
-    "start": "<!-- "
+    "start": "<!-- ",
+    "end": " -->"
   },
   "treeSitter": {
     "parserSource": "github:tree-sitter-grammars/tree-sitter-xml/xml#5000ae8f22d11fbe93939b05c1e37cf21117162d",
