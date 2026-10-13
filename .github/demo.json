@@ -1,0 +1,16 @@
+{
+  "title": "language-property-list",
+  "description": "Property List (XML) syntax highlighting in the editor.",
+  "recordedOn": "2026-10-13",
+  "sourceRevision": "8438d9487eaad8092d58a4b3ea4700a06370ca58",
+  "mode": "normal",
+  "fontSettings": "default",
+  "images": [
+    {
+      "file": "demo.png",
+      "label": "Property List (XML) syntax highlighting at the default editor font size.",
+      "width": 1100,
+      "height": 820
+    }
+  ]
+}
