@@ -1,16 +1,61 @@
 {
   "title": "language-property-list",
-  "description": "Property List (XML) syntax highlighting in the editor.",
-  "recordedOn": "2026-10-13",
-  "sourceRevision": "8438d9487eaad8092d58a4b3ea4700a06370ca58",
+  "description": "Property List (XML) syntax highlighting at the default editor font size.",
+  "recordedOn": "2026-10-14",
+  "sourceRevision": "d23707d998c1545f2bf1f5ff7de0ce9d6e1c62b3",
+  "themeSourceRevision": "14a69683b0e3238e2bc128fbfae3866c1e4ee9c6",
   "mode": "normal",
   "fontSettings": "default",
+  "scenario": "demo.js",
+  "recipeHash": "77bda28d967f08b4aa942735d75202cbe78580b840d899c67437a1c6f8e4ecaf",
+  "environment": {
+    "platform": "win32",
+    "arch": "x64",
+    "electron": "44.7.0",
+    "chrome": "152.0.7977.130",
+    "devicePixelRatio": 1,
+    "locale": "en-GB",
+    "fontFamily": "Fira Code, Menlo, DejaVu Sans Mono, Consolas, monospace",
+    "fontSize": 14,
+    "themes": ["one-day-syntax", "one-day-ui"]
+  },
+  "viewport": { "width": 1100, "height": 820 },
+  "cornerRadius": 10,
+  "sources": {
+    "editor": {
+      "revision": "0362a9fac7d6e153a768c0381800d6f3eb06647a",
+      "dirty": true,
+      "workingTreeHash": "1d75658a8b7d55a69c806a3786c562863bb9d5c71cbf96b3084c6a78c0d648b4"
+    },
+    "package": {
+      "revision": "d23707d998c1545f2bf1f5ff7de0ce9d6e1c62b3",
+      "dirty": true,
+      "workingTreeHash": "8c070c28268572d08e6bc220b26643d6e9949eb1096bc1ebfa413f67e721b039"
+    },
+    "language-property-list": {
+      "revision": "d23707d998c1545f2bf1f5ff7de0ce9d6e1c62b3",
+      "dirty": true,
+      "workingTreeHash": "8c070c28268572d08e6bc220b26643d6e9949eb1096bc1ebfa413f67e721b039"
+    },
+    "one-theme": {
+      "revision": "14a69683b0e3238e2bc128fbfae3866c1e4ee9c6",
+      "dirty": true,
+      "workingTreeHash": "50ec2f83a6347dd8113870992ec4eb2be4014f3d9e12213c2f51b543f1eca793"
+    }
+  },
+  "fixtures": [
+    {
+      "file": "example.plist",
+      "sha256": "76dec5c0c4fe13cda169d42bf413a7f6928e292514f3b02b0ef2139a7c150e14"
+    }
+  ],
   "images": [
     {
       "file": "demo.png",
       "label": "Property List (XML) syntax highlighting at the default editor font size.",
       "width": 1100,
-      "height": 820
+      "height": 820,
+      "sha256": "35ead33180dc653c85caed4c4d37dad2a9a5f599fb15d76c1f013ea0f2f86511"
     }
   ]
 }
