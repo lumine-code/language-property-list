@@ -21,7 +21,8 @@
     "grammars",
     "settings",
     "snippets",
-    "spec"
+    "spec",
+    "THIRD_PARTY_NOTICES"
   ],
   "bugs": {
     "url": "https://github.com/lumine-code/language-property-list/issues"
