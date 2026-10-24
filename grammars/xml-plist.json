@@ -13,7 +13,7 @@
   },
   "treeSitter": {
     "parserSource": "github:tree-sitter-grammars/tree-sitter-xml/xml#5000ae8f22d11fbe93939b05c1e37cf21117162d",
-    "wasmBuildTool": "tree-sitter-cli#v0.27.0",
+    "wasmBuildTool": "tree-sitter-cli#v0.27.1",
     "grammar": "xml.wasm",
     "highlightsQuery": "xml-plist-highlights.scm",
     "foldsQuery": "xml-plist-folds.scm",
