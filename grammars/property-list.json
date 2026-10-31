@@ -11,7 +11,9 @@
   "contentRegex": "^\\s*(?://[^\\r\\n]*(?:\\r?\\n|$)\\s*|/\\*(?:[^*]|\\*(?!/))*\\*/\\s*)*[({]",
   "fileTypes": ["plist", "dict", "scriptSuite", "scriptTerminology", "savedSearch"],
   "comments": {
-    "start": "// "
+    "start": "// ",
+    "line": "//",
+    "block": ["/*", "*/"]
   },
   "treeSitter": {
     "parserSource": "github:Formkunft/tree-sitter-property-list#31ff8b0a6dda1b88c8f24b0bc376a0ae573607b2",
