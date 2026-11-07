@@ -69,6 +69,9 @@ suitability for any purpose.
 Source: https://github.com/Formkunft/tree-sitter-property-list
 Revision: 31ff8b0a6dda1b88c8f24b0bc376a0ae573607b2
 
+Parser source: github:Formkunft/tree-sitter-property-list#31ff8b0a6dda1b88c8f24b0bc376a0ae573607b2
+Resolved commit: 31ff8b0a6dda1b88c8f24b0bc376a0ae573607b2
+
 Original file: LICENSE
 
 MIT License
@@ -97,6 +100,9 @@ SOFTWARE.
 ----- BEGIN THIRD-PARTY LICENSE: parser:tree-sitter-grammars_tree-sitter-xml -----
 Source: https://github.com/tree-sitter-grammars/tree-sitter-xml
 Revision: 5000ae8f22d11fbe93939b05c1e37cf21117162d
+
+Parser source: github:tree-sitter-grammars/tree-sitter-xml/xml#5000ae8f22d11fbe93939b05c1e37cf21117162d
+Resolved commit: 5000ae8f22d11fbe93939b05c1e37cf21117162d
 
 Original file: LICENSE
 
